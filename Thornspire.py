@@ -31,6 +31,20 @@ def select_class(chosen_class):
 def update_camera():
 	camera["x"] = player["x"] - 400
 	camera["y"] = player["y"] - 300
+
+
+#map draw function
+def draw_map():
+	for row_index, row in enumerate(TsObjects.map_data):
+		for col_index, tile in enumerate(row):
+			#calculates where the tile is on the map
+			tile_x = col_index * TsObjects.TILE_SIZE - camera["x"]
+			tile_y = row_index * TsObjects.TILE_SIZE - camera["y"]
+			
+			if tile == 1:
+				pygame.draw.rect(screen, (100, 100, 100), (tile_x, tile_y, TsObjects.TILE_SIZE, TsObjects.TILE_SIZE))
+			elif tile == 0:
+				pygame.draw.rect(screen, (50, 35, 20), (tile_x, tile_y, TsObjects.TILE_SIZE, TsObjects.TILE_SIZE))
 	
 select_class("Mage")
 print(player)
@@ -53,19 +67,6 @@ while running:
 		player["x"] += player["speed"]	
 		
 	update_camera() #Moved camera with player movement
-
-	#map draw function
-	def draw_map():
-		for row_index, row in enumerate(TsObjects.map_data):
-			for col_index, tile in enumerate(row):
-				#calculates where the tile is on the map
-				tile_x = col_index * TsObjects.TILE_SIZE - camera["x"]
-				tile_y = row_index * TsObjects.TILE_SIZE - camera["y"]
-			
-				if tile == 1:
-					pygame.draw.rect(screen, (100, 100, 100), (tile_x, tile_y, TsObjects.TILE_SIZE, TsObjects.TILE_SIZE))
-				elif tile == 0:
-					pygame.draw.rect(screen, (50, 35, 20), (tile_x, tile_y, TsObjects.TILE_SIZE, TsObjects.TILE_SIZE))
 
 	#drawing
 	screen.fill((0, 0, 0))
