@@ -27,7 +27,7 @@ def select_class(chosen_class):
 
 	print(f"{chosen_class} selected!")
 
-
+#camera follows player
 def update_camera():
 	camera["x"] = player["x"] - 400
 	camera["y"] = player["y"] - 300
